@@ -14,16 +14,53 @@ public:
 
 private:
   vector<vector<int>> GetDiagonalView(const vector<vector<int>>& mat) {
-    vector<vector<int>> diag_mat_view(mat.size() + mat[0].size() - 1);
-    for (size_t i = 0; i < mat.size(); ++i) {
-      for (size_t j = 0; j <= i; ++j) {
-        diag_mat_view[j].push_back(mat[i][j]);
+    // size_t m = mat.size();
+    // size_t n = mat[0].size();
+    // vector<vector<int>> diag_mat_view(m + n - 1);
+
+    // for (int k = 0; k <= m - 1; ++k) {
+    //  int i = k;
+    //  int j = 0;
+    //  while (i >= 0) {
+    //    diag_mat_view[k].push_back(mat[i][j]);
+    //    --i;
+    //    ++j;
+    //  }
+    //}
+
+    // for (int k = 1; k <= n - 1; ++k) {
+    //  int i = static_cast<int>(m) - 1;
+    //  int j = k;
+    //  while (j <= n - 1) {
+    //    diag_mat_view[k + m - 1].push_back(mat[i][j]);
+    //    --i;
+    //    ++j;
+    //  }
+    //}
+
+    // return diag_mat_view;
+
+    const size_t m = mat.size();
+    const size_t n = mat[0].size();
+    vector<vector<int>> diag_mat_view(m + n - 1);
+
+    for (int k = static_cast<int>(m) - 1; k >= 0; --k) {
+      int i = k;
+      int j = 0;
+      while (i <= m - 1) {
+        diag_mat_view[m - k - 1].push_back(mat[i][j]);
+        ++i;
+        ++j;
       }
     }
 
-    for (size_t i = 0; i < mat.size(); ++i) {
-      for (size_t j = i + 1; j < mat[0].size(); ++j) {
-        diag_mat_view[j + 2].push_back(mat[i][j]);
+    for (int k = 1; k <= n - 1; ++k) {
+      int i = 0;
+      int j = k;
+      while (j <= n - 1) {
+        diag_mat_view[k + m - 1].push_back(mat[i][j]);
+        ++i;
+        ++j;
       }
     }
 
