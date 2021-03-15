@@ -1,4 +1,6 @@
+#include <algorithm>
 #include <cassert>
+#include <cstdint>
 #include <iostream>
 #include <vector>
 
@@ -7,48 +9,26 @@ using namespace std;
 class Solution {
 public:
   vector<vector<int>> diagonalSort(vector<vector<int>>& mat) {
-    vector<vector<int>> res = GetDiagonalView(mat);
+    vector<vector<int*>> diag_view = GetDiagonalView(mat);
 
-    return res;
+    for (vector<int*>& v : GetDiagonalView(mat)) {
+      std::sort(v.begin(), v.end(), [](int* a, int* b) { return *a < *b; });
+    }
+
+    return mat;
   }
 
 private:
-  vector<vector<int>> GetDiagonalView(const vector<vector<int>>& mat) {
-    // size_t m = mat.size();
-    // size_t n = mat[0].size();
-    // vector<vector<int>> diag_mat_view(m + n - 1);
+  vector<vector<int*>> GetDiagonalView(vector<vector<int>>& mat) {
+    const int m = static_cast<int>(mat.size());
+    const int n = static_cast<int>(mat[0].size());
+    vector<vector<int*>> diag_mat_view(static_cast<int64_t>(m) + n - 1);
 
-    // for (int k = 0; k <= m - 1; ++k) {
-    //  int i = k;
-    //  int j = 0;
-    //  while (i >= 0) {
-    //    diag_mat_view[k].push_back(mat[i][j]);
-    //    --i;
-    //    ++j;
-    //  }
-    //}
-
-    // for (int k = 1; k <= n - 1; ++k) {
-    //  int i = static_cast<int>(m) - 1;
-    //  int j = k;
-    //  while (j <= n - 1) {
-    //    diag_mat_view[k + m - 1].push_back(mat[i][j]);
-    //    --i;
-    //    ++j;
-    //  }
-    //}
-
-    // return diag_mat_view;
-
-    const size_t m = mat.size();
-    const size_t n = mat[0].size();
-    vector<vector<int>> diag_mat_view(m + n - 1);
-
-    for (int k = static_cast<int>(m) - 1; k >= 0; --k) {
+    for (int k = m - 1; k >= 0; --k) {
       int i = k;
       int j = 0;
       while (i <= m - 1) {
-        diag_mat_view[m - k - 1].push_back(mat[i][j]);
+        diag_mat_view[static_cast<int64_t>(m) - k - 1].push_back(&mat[i][j]);
         ++i;
         ++j;
       }
@@ -58,7 +38,7 @@ private:
       int i = 0;
       int j = k;
       while (j <= n - 1) {
-        diag_mat_view[k + m - 1].push_back(mat[i][j]);
+        diag_mat_view[static_cast<int64_t>(k) + m - 1].push_back(&mat[i][j]);
         ++i;
         ++j;
       }
