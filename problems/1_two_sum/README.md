@@ -31,3 +31,12 @@ Output: [1,2]
 Input: nums = [3,3], target = 6
 
 Output: [0,1]
+
+### **Constraints:**
+
+- 2 <= nums.length <= 104
+- -109 <= nums[i] <= 109
+- -109 <= target <= 109
+- Only one valid answer exists.
+
+### **Follow-up:** Can you come up with an algorithm that is less than O(n^2) time complexity?
