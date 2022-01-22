@@ -5,3 +5,4 @@ project(
   LANGUAGES CXX
 )
 
+add_executable(${CMAKE_PROJECT_NAME} solution.cpp)
