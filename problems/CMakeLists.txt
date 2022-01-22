@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.12)
+
+project(
+  LeetCodeProblems
+  LANGUAGES CXX
+)
+
+add_subdirectory(1_two_sum)
+add_subdirectory(26_remove_duplicates_from_sorted_array)
+add_subdirectory(217_contains_duplicate)
+add_subdirectory(1108_defanging_an_ip_address)
+add_subdirectory(1329_sort_the_matrix_diagonally)
+add_subdirectory(1431_kids_with_the_greatest_number_of_candies)
+add_subdirectory(1480_running_sum_of_1d_array)
