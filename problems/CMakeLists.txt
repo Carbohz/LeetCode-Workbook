@@ -6,6 +6,7 @@ project(
 )
 
 add_subdirectory(1_two_sum)
+add_subdirectory(13_roman_to_integer)
 add_subdirectory(26_remove_duplicates_from_sorted_array)
 add_subdirectory(217_contains_duplicate)
 add_subdirectory(1108_defanging_an_ip_address)
